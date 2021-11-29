@@ -12,7 +12,7 @@ namespace Task2
             Logger = new Logger();
             var woreker1 = new Worker1(Logger);
 
-            woreker1.Work(out int num1, out int num2);
+            woreker1.Work();
 
             Console.ReadKey();
         }
@@ -20,32 +20,33 @@ namespace Task2
     public interface ILogger
     {
         int Event(out int num);
-        int Error(bool input);
+        void Error();
     }
 
     public class Logger : ILogger
     {
-        int ILogger.Error(bool input)
+        void ILogger.Error()
         {
-            int num1; 
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Введите число повторно:");
-            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
-            while (isNumber1 == false)
-            {
-                Console.WriteLine("Введите число повторно:");
-                isNumber1 = int.TryParse(Console.ReadLine(), out num1);
-            }
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
 
-            return num1;
         }
 
         int ILogger.Event(out int num)
         {
             var isNumber = int.TryParse(Console.ReadLine(), out num);
+            if (isNumber == false)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Введите число повторно:");
+                var isNumber1 = int.TryParse(Console.ReadLine(), out num);
+                while (isNumber1 == false)
+                {
+                    Console.WriteLine("Введите число повторно:");
+                    isNumber1 = int.TryParse(Console.ReadLine(), out num);
+                }
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+            }
             return num;
         }
     }

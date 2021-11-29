@@ -15,53 +15,17 @@ namespace Task2
             Logger = logger;
         }
 
-        public void Work(out int num1, out int num2)
+        public void Work()
         {
             Console.WriteLine("Введите первое число:");
-            Logger.Event(out int num);
-            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
-            if (isNumber1 == false)
-            {
-                Logger.Error(isNumber1);
-            }
-
+            var isNumber1 = Logger.Event(out int num);
 
             Console.WriteLine("Введите второе число:");
-            var isNumber2 = 
-            if (isNumber2 == false)
-            {
-                Logger.Error(isNumber1);
-            }
+            var isNumber2 = Logger.Event(out int num1);
 
+            var sum = isNumber1 + isNumber2;
 
+            Console.WriteLine("Сумма двух чисел равна: " + sum);
         }
-
-        /*int ICalculator.Sum(int a, int b)
-        {
-            int c = a + b;
-            Console.WriteLine($"Сумма двух чисел равна {c}");
-            return c;
-        }
-
-        public void NumbersInput(out int num1, out int num2)
-        {
-            Console.WriteLine("Введите первое число:");
-
-            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
-            while (isNumber1 == false)
-            {
-                Console.WriteLine("Введите первое число повторно:");
-                isNumber1 = int.TryParse(Console.ReadLine(), out num1);
-            }
-
-            Console.WriteLine("Введите второе число:");
-            var isNumber2 = int.TryParse(Console.ReadLine(), out num2);
-            while (isNumber2 == false)
-            {
-                Console.WriteLine("Введите второе число повторно:");
-                isNumber2 = int.TryParse(Console.ReadLine(), out num2);
-            }
-        }
-        */
     }
 }
