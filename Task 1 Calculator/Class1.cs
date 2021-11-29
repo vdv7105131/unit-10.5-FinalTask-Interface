@@ -14,19 +14,21 @@ namespace Task_1_Calculator
         public void NumbersInput(out int num1, out int num2)
         {
             Console.WriteLine("Введите первое число:");
-            num1 = Convert.ToInt32(Console.ReadLine());
-
+            
+            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            while (isNumber1 == false)
+            {
+                Console.WriteLine("Введите первое число повторно:");
+                isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            }
+            
             Console.WriteLine("Введите второе число:");
-            num2 = Convert.ToInt32(Console.ReadLine());
-
-            //try
-            //{
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
+            var isNumber2 = int.TryParse(Console.ReadLine(), out num2);
+            while (isNumber2 == false)
+            {
+                Console.WriteLine("Введите второе число повторно:");
+                isNumber2 = int.TryParse(Console.ReadLine(), out num2);
+            }
         }
     }
 }
