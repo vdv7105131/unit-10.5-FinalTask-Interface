@@ -15,45 +15,53 @@ namespace Task2
             Logger = logger;
         }
 
-        public void Work()
+        public void Work(out int num1, out int num2)
         {
-            Logger.Event("Worker1 начал свою работу");
-            Thread.Sleep(500);
-            Logger.Event("Worker1 окончил свою работу");
-            Thread.Sleep(500);
-        }
-    }
-    public class Worker2 : IWorker
-    {
-        ILogger Logger { get; }
-        public Worker2(ILogger logger)
-        {
-            Logger = logger;
+            Console.WriteLine("Введите первое число:");
+            Logger.Event(out int num);
+            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            if (isNumber1 == false)
+            {
+                Logger.Error(isNumber1);
+            }
+
+
+            Console.WriteLine("Введите второе число:");
+            var isNumber2 = 
+            if (isNumber2 == false)
+            {
+                Logger.Error(isNumber1);
+            }
+
+
         }
 
-        public void Work()
+        /*int ICalculator.Sum(int a, int b)
         {
-            Logger.Event("Worker2 начал свою работу");
-            Thread.Sleep(500);
-            Logger.Event("Worker2 окончил свою работу");
-            Thread.Sleep(500);
-        }
-    }
-
-    public class Worker3 : IWorker
-    {
-        ILogger Logger { get; }
-        public Worker3(ILogger logger)
-        {
-            Logger = logger;
+            int c = a + b;
+            Console.WriteLine($"Сумма двух чисел равна {c}");
+            return c;
         }
 
-        public void Work()
+        public void NumbersInput(out int num1, out int num2)
         {
-            Logger.Event("Worker3 начал свою работу");
-            Thread.Sleep(500);
-            Logger.Event("Worker3 окончил свою работу");
-            Thread.Sleep(500);
+            Console.WriteLine("Введите первое число:");
+
+            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            while (isNumber1 == false)
+            {
+                Console.WriteLine("Введите первое число повторно:");
+                isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            }
+
+            Console.WriteLine("Введите второе число:");
+            var isNumber2 = int.TryParse(Console.ReadLine(), out num2);
+            while (isNumber2 == false)
+            {
+                Console.WriteLine("Введите второе число повторно:");
+                isNumber2 = int.TryParse(Console.ReadLine(), out num2);
+            }
         }
+        */
     }
 }

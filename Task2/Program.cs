@@ -11,33 +11,42 @@ namespace Task2
         {
             Logger = new Logger();
             var woreker1 = new Worker1(Logger);
-            var woreker2 = new Worker2(Logger);
-            var woreker3 = new Worker3(Logger);
 
-            woreker1.Work();
-            woreker2.Work();
-            woreker3.Work();
+            woreker1.Work(out int num1, out int num2);
 
             Console.ReadKey();
         }
     }
     public interface ILogger
     {
-        void Event(string message);
-        void Error(string message);
+        int Event(out int num);
+        int Error(bool input);
     }
 
     public class Logger : ILogger
     {
-        void ILogger.Error(string message)
+        int ILogger.Error(bool input)
         {
-            Console.WriteLine(message);
+            int num1; 
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Введите число повторно:");
+            var isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            while (isNumber1 == false)
+            {
+                Console.WriteLine("Введите число повторно:");
+                isNumber1 = int.TryParse(Console.ReadLine(), out num1);
+            }
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            return num1;
         }
 
-        void ILogger.Event(string message)
+        int ILogger.Event(out int num)
         {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
+            var isNumber = int.TryParse(Console.ReadLine(), out num);
+            return num;
         }
     }
 
